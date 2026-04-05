@@ -3,7 +3,7 @@ name: My First Pipeline
 on:
   push:
     branches:
-      - main
+      - main_demo
 
 jobs:
   build:
