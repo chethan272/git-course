@@ -1,0 +1,22 @@
+name: Deploy DAG to Composer
+
+on:
+  push:
+    branches:
+      - main_demo
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup GCloud
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: YOUR_PROJECT_ID
+          service_account_key: ${{ secrets.GCP_KEY }}
+
+      - name: Upload DAG
+        run: gsutil cp dags/dag.py gs://YOUR_BUCKET/dags/
